@@ -1,4 +1,5 @@
 <script>
+  import  Counter  from "./lib/Counter.svelte";
   export let name
 </script>
 
@@ -8,6 +9,7 @@
     Visit the <a href="https://svslte.dev/tutorual">Svelte Tutorial</a> to learn
     how to build Svelte service.
   </p>
+  <Counter/>
 </main>
 
 <style>
