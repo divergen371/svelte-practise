@@ -1,1 +1,5 @@
-<h2>カウンターコンポーネント</h2>
+<script>
+  export let name;
+</script>
+
+<h2>{name}コンポーネント</h2>
