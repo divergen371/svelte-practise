@@ -1,16 +1,24 @@
 <script>
-  import { readable, writable } from "svelte/store"
+  import { derived, writable } from "svelte/store"
   export let name
 
-  const time = readable(null, set => {
-    set(new Date())
+  const count = writable(0)
+  const doubleCount = derived(count, $count => $count * 2)
 
-    const interval = setInterval(() => {
-      set(new Date())
-    }, 1000)
-  })
+  const increment = () => {
+    count.update(value => {
+      return value + 1
+    })
+  }
 </script>
 
 <h2>{name} コンポーネント</h2>
 
-<div>{$time}</div>
+<div>
+  <p>count: {$count}</p>
+  <p>doubleCount: {$doubleCount}</p>
+</div>
+
+<div>
+  <button on:click={increment}>Up</button>
+</div>
