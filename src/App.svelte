@@ -1,6 +1,7 @@
 <script>
-  import  Counter  from "./lib/Counter.svelte";
+  import Counter from "./lib/Counter.svelte"
   export let name
+  let show = true
 </script>
 
 <main>
@@ -9,7 +10,10 @@
     Visit the <a href="https://svslte.dev/tutorual">Svelte Tutorial</a> to learn
     how to build Svelte service.
   </p>
-  <Counter name="Counter"/>
+  <button on:click={() => (show = !show)}>Toggle</button>
+  {#if show}
+    <Counter name="Counter" />
+  {/if}
 </main>
 
 <style>

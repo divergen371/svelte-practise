@@ -1,23 +1,34 @@
 <script>
-  import { derived, writable } from "svelte/store"
+  import { beforeUpdate, onDestroy, onMount, afterUpdate } from "svelte"
   export let name
-  let count = 0
 
+  beforeUpdate(() => {
+    console.log("beforeUpdate execute")
+  })
+
+  onMount(() => {
+    console.log("onMount execute")
+  })
+
+  onDestroy(() => {
+    console.log("onDestroy execute")
+  })
+
+  afterUpdate(() => {
+    console.log("afterUpdate execute")
+  })
+  console.log("script execute")
+  let count = 0
   const increment = () => {
     count += 1
   }
 </script>
 
 <h2>{name} コンポーネント</h2>
-
 <div>
-  <p>count: {count}</p>
+  <p>カウント: {count}</p>
 </div>
 
-{#if count < 5}
-  <div>
-    <button on:click={increment}>Up</button>
-  </div>
-{:else}
-  <p>これ以上増やせません</p>
-{/if}
+<div>
+  <button on:click={increment}>Up</button>
+</div>
