@@ -9,7 +9,7 @@
     Visit the <a href="https://svslte.dev/tutorual">Svelte Tutorial</a> to learn
     how to build Svelte service.
   </p>
-  <Counter />
+  <Counter name="Counter"/>
 </main>
 
 <style>
