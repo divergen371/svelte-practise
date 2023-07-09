@@ -1,24 +1,23 @@
 <script>
   import { derived, writable } from "svelte/store"
   export let name
-
-  const count = writable(0)
-  const doubleCount = derived(count, $count => $count * 2)
+  let count = 0
 
   const increment = () => {
-    count.update(value => {
-      return value + 1
-    })
+    count += 1
   }
 </script>
 
 <h2>{name} コンポーネント</h2>
 
 <div>
-  <p>count: {$count}</p>
-  <p>doubleCount: {$doubleCount}</p>
+  <p>count: {count}</p>
 </div>
 
-<div>
-  <button on:click={increment}>Up</button>
-</div>
+{#if count < 5}
+  <div>
+    <button on:click={increment}>Up</button>
+  </div>
+{:else}
+  <p>これ以上増やせません</p>
+{/if}
