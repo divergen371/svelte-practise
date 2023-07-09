@@ -1,8 +1,15 @@
 <script>
   import { writable } from "svelte/store"
+  import { onDestroy } from "svelte"
   export let name = "Counter"
-  const count = writable(0, set => {
-    set(100)
+  let countValue
+  const count = writable(0, () => {
+    return () => {
+      console.log("unsubscribe execute")
+    }
+  })
+  const unsubscribe = count.subscribe(value => {
+    countValue = value
   })
   const increment = () => {
     count.update(value => {
@@ -10,6 +17,9 @@
       return value + 1
     })
   }
+  onDestroy(() => {
+  unsubscribe()
+  })
 </script>
 
 <h2>{name}コンポーネント</h2>
